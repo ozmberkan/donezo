@@ -1,12 +1,10 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "../globals.css";
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-import { Separator } from "@/components/ui/separator";
 import Appsidebar from "@/components/Sidebar/Appsidebar";
-
 import NextTopLoader from "nextjs-toploader";
 import BreadC from "@/components/Sidebar/BreadC";
+import { Inter } from "next/font/google";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import "../globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 

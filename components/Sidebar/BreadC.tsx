@@ -8,7 +8,6 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
 
 const BreadC = () => {
   const pathName = usePathname();
