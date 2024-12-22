@@ -1,14 +1,13 @@
 "use client";
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
-import { AppDispatch, RootState } from "@/redux/store";
+import { RootState } from "@/redux/store";
 
 export default function Home() {
-  const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
 
-  const user = useSelector((state: RootState) => state.user.user);
+  const { user } = useSelector((state: RootState) => state.user);
 
   useEffect(() => {
     if (!user) {
