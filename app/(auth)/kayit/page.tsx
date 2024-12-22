@@ -59,8 +59,12 @@ const RegisterPage = () => {
       setTimeout(() => {
         router.push("/");
       }, 2000);
-    } catch (error: any) {
-      console.log(error);
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        toast.error(error.message || "Giriş başarısız.");
+      } else {
+        toast.error("Bilinmeyen bir hata oluştu.");
+      }
     }
   };
 
