@@ -50,10 +50,6 @@ const LoginPage = () => {
     },
   });
 
-  type CustomError = {
-    message: string;
-  };
-
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
     try {
       await dispatch(loginService(data)).unwrap();
