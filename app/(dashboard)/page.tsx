@@ -8,7 +8,7 @@ export default function Home() {
   const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
 
-  const user = useSelector((state: RootState) => state.user.currentUser);
+  const user = useSelector((state: RootState) => state.user.user);
 
   useEffect(() => {
     if (!user) {
