@@ -1,7 +1,9 @@
+"use client";
 import { Home, Inbox, MessageCircle, Users } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
+  SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
@@ -11,6 +13,9 @@ import {
   SidebarSeparator,
 } from "@/components/ui/sidebar";
 import Link from "next/link";
+import { Button } from "../ui/button";
+import { signOut } from "firebase/auth";
+import { auth } from "@/firebase/firebase";
 
 const items = [
   {
@@ -39,6 +44,12 @@ const items2 = [
 ];
 
 const Appsidebar = () => {
+  const exitHandle = async () => {
+    await signOut(auth);
+  };
+
+  const user = auth.currentUser;
+
   return (
     <Sidebar>
       <SidebarContent>
@@ -78,6 +89,9 @@ const Appsidebar = () => {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
+      <SidebarFooter>
+        <Button onClick={exitHandle}>Çıkış yap</Button>
+      </SidebarFooter>
     </Sidebar>
   );
 };
