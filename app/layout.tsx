@@ -1,11 +1,8 @@
 import type { Metadata } from "next";
-import Appsidebar from "@/components/Sidebar/Appsidebar";
-import NextTopLoader from "nextjs-toploader";
-import BreadC from "@/components/Sidebar/BreadC";
 import { Inter } from "next/font/google";
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import "./globals.css";
 import ReduxProvider from "@/redux/ReduxProvider";
+import NextTopLoader from "nextjs-toploader";
 
 const inter = Inter({ subsets: ["latin"] });
 

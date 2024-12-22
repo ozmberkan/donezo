@@ -13,7 +13,7 @@ export default function AuthLayout({ children }: AuthLayoutProps) {
             Donezo
           </h1>
           <p className="text-sm text-neutral-600 font-medium">
-            Hemen donezo'ya katıl
+            Hemen donezo&apos;ya katıl
           </p>
         </div>
         <main className="w-full">

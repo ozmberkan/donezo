@@ -48,8 +48,6 @@ const Appsidebar = () => {
     await signOut(auth);
   };
 
-  const user = auth.currentUser;
-
   return (
     <Sidebar>
       <SidebarContent>
