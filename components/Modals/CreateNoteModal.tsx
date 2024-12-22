@@ -51,8 +51,12 @@ const CreateNoteModal = () => {
 
       toast.success("Not başarıyla oluşturuldu.");
       form.reset();
-    } catch (error: any) {
-      console.log(error);
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        toast.error(error.message || "Not oluşturulurken bir hata oluştu.");
+      } else {
+        console.log(error);
+      }
     }
   };
 

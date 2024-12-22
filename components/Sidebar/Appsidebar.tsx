@@ -26,6 +26,7 @@ import { auth, db } from "@/firebase/firebase";
 import { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import CreateNoteModal from "../Modals/CreateNoteModal";
+import { toast } from "sonner";
 
 const items = [
   {
@@ -77,8 +78,12 @@ const Appsidebar = () => {
       }));
 
       setNotes(notesData);
-    } catch (error: any) {
-      console.error("Error fetching notes:", error);
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        toast.error(error.message || "Notlar getirilirken bir hata oluştu.");
+      } else {
+        toast.error("Bilinmeyen bir hata oluştu.");
+      }
     } finally {
       setLoading(false);
     }

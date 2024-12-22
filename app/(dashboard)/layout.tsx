@@ -1,8 +1,7 @@
-import CreateNoteModal from "@/components/Modals/CreateNoteModal";
 import Appsidebar from "@/components/Sidebar/Appsidebar";
 import BreadC from "@/components/Sidebar/BreadC";
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import React from "react";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { Toaster } from "sonner";
 
 interface DashboardLayoutProps {
