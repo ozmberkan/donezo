@@ -13,13 +13,11 @@ interface UserDataProps {
 interface AuthState {
   user: UserDataProps | null;
   status: string;
-  error: string | null;
 }
 
 const initialState: AuthState = {
   user: null,
   status: 'idle',
-  error: null,
 };
 
 interface registerDataProps {
@@ -86,29 +84,23 @@ const authSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(registerService.pending, (state) => {
       state.status = 'loading';
-      state.error = null; 
     });
-    builder.addCase(registerService.fulfilled, (state, action: PayloadAction<UserDataProps>) => {
+    builder.addCase(registerService.fulfilled, (state, action) => {
       state.status = 'success';
       state.user = action.payload;
-      state.error = null;
     });
-    builder.addCase(registerService.rejected, (state, action: PayloadAction<string | undefined>) => {
+    builder.addCase(registerService.rejected, (state) => {
       state.status = 'failed';
-      state.error = action.payload || "Unknown error occurred";
     });
     builder.addCase(loginService.pending, (state) => {
       state.status = 'loading';
-      state.error = null; 
     });
-    builder.addCase(loginService.fulfilled, (state, action: PayloadAction<UserDataProps>) => {
+    builder.addCase(loginService.fulfilled, (state, action) => {
       state.status = 'success';
       state.user = action.payload;
-      state.error = null;
     });
-    builder.addCase(loginService.rejected, (state, action: PayloadAction<string | undefined>) => {
+    builder.addCase(loginService.rejected, (state) => {
       state.status = 'failed';
-      state.error = action.payload || "Unknown error occurred";
     });
   },
 });
