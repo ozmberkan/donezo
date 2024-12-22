@@ -11,7 +11,6 @@ interface UserDataProps {
 }
 
 interface AuthState {
-  currentUser: any;
   user: UserDataProps | null;
   status: string;
   error: string | null;
