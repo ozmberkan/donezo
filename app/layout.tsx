@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import ReduxProvider from "@/redux/ReduxProvider";
 import NextTopLoader from "nextjs-toploader";
+import { SessionProvider } from "next-auth/react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,13 +18,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <ReduxProvider>
-          <NextTopLoader color="#000" showSpinner={false} />
-          <div className="flex-grow  w-full">{children}</div>
-        </ReduxProvider>
-      </body>
-    </html>
+    <SessionProvider>
+      <html lang="en">
+        <body className={inter.className}>
+          <ReduxProvider>
+            <NextTopLoader color="#000" showSpinner={false} />
+            <div className="flex-grow  w-full">{children}</div>
+          </ReduxProvider>
+        </body>
+      </html>
+    </SessionProvider>
   );
 }

@@ -4,6 +4,7 @@ import { Separator } from "@/components/ui/separator";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
+import { Text, TextIcon } from "lucide-react";
 import {
   Form,
   FormControl,
