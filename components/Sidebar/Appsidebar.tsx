@@ -2,13 +2,17 @@
 import {
   Home,
   Inbox,
+  LoaderIcon,
   LoaderPinwheel,
   MessageCircle,
+  Text,
+  User,
   Users,
 } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
+  SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
@@ -25,6 +29,7 @@ import { toast } from "sonner";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/redux/store";
 import { getAllNotes } from "@/redux/slices/noteSlice";
+import { Button } from "../ui/button";
 
 const items = [
   {
@@ -117,9 +122,12 @@ const Appsidebar = () => {
           </SidebarGroup>
           <SidebarSeparator />
           {status === "loading" ? (
-            <p className="p-3">
-              <LoaderPinwheel className="animate-spin" />
-            </p>
+            <div className="p-3 rounded-md ">
+              <p className="py-1 rounded-lg  text-sm font-medium flex items-center gap-x-2">
+                <LoaderIcon size={16} className="animate-spin" />
+                Veriler Yükleniyor..
+              </p>
+            </div>
           ) : (
             notes.length > 0 && (
               <SidebarGroup>
@@ -130,7 +138,10 @@ const Appsidebar = () => {
                       <SidebarMenuItem key={item.id}>
                         <SidebarMenuButton asChild>
                           <Link href={`/note/${item.id}`}>
-                            <span>{item.title}</span>
+                            <span className="flex items-center gap-x-2">
+                              <Text size={14} />
+                              {item.title}
+                            </span>
                           </Link>
                         </SidebarMenuButton>
                       </SidebarMenuItem>
@@ -142,6 +153,15 @@ const Appsidebar = () => {
           )}
         </SidebarContent>
         <SidebarSeparator />
+        <SidebarFooter>
+          <Button
+            variant={"outline"}
+            className="flex justify-start items-center"
+          >
+            <User size={17} />
+            Profilim
+          </Button>
+        </SidebarFooter>
       </Sidebar>
     </>
   );
