@@ -27,6 +27,11 @@ import { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import CreateNoteModal from "../Modals/CreateNoteModal";
 import { toast } from "sonner";
+import { SignedIn, UserButton, UserProfile } from "@clerk/nextjs";
+import { User } from "@clerk/nextjs/server";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/redux/store";
+import { getAllNotes } from "@/redux/slices/noteSlice";
 
 const items = [
   {
@@ -55,37 +60,19 @@ const items2 = [
 ];
 
 const Appsidebar = () => {
-  const exitHandle = async () => {
-    await signOut(auth);
-  };
+  const { notes, status } = useSelector((state: RootState) => state.notes);
 
-  const [notes, setNotes] = useState<
-    { id: string; title: string; content: string }[]
-  >([]);
-
-  const [loading, setLoading] = useState<boolean>(false);
+  const dispatch = useDispatch<AppDispatch>();
 
   const fetchNotes = async () => {
-    setLoading(true);
     try {
-      const notesRef = collection(db, "notes");
-      const notesDoc = await getDocs(notesRef);
-
-      const notesData = notesDoc.docs.map((doc) => ({
-        id: doc.id,
-        title: doc.data().title || "Untitled",
-        content: doc.data().content || "No content",
-      }));
-
-      setNotes(notesData);
+      dispatch(getAllNotes());
     } catch (error: unknown) {
       if (error instanceof Error) {
         toast.error(error.message || "Notlar getirilirken bir hata oluştu.");
       } else {
         toast.error("Bilinmeyen bir hata oluştu.");
       }
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -136,7 +123,7 @@ const Appsidebar = () => {
             </SidebarGroupContent>
           </SidebarGroup>
           <SidebarSeparator />
-          {loading ? (
+          {status === "loading" ? (
             <p className="p-3">
               <LoaderPinwheel className="animate-spin" />
             </p>
@@ -161,9 +148,7 @@ const Appsidebar = () => {
             )
           )}
         </SidebarContent>
-        <SidebarFooter>
-          <Button onClick={exitHandle}>Çıkış yap</Button>
-        </SidebarFooter>
+        <SidebarSeparator />
       </Sidebar>
     </>
   );

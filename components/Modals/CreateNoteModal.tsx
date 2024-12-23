@@ -25,8 +25,13 @@ import { Textarea } from "../ui/textarea";
 import { collection, doc, setDoc } from "firebase/firestore";
 import { db } from "@/firebase/firebase";
 import { toast } from "sonner";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/redux/store";
+import { getAllNotes } from "@/redux/slices/noteSlice";
 
 const CreateNoteModal = () => {
+  const dispatch = useDispatch<AppDispatch>();
+
   const formSchema = z.object({
     title: z.string().min(2).max(50),
     content: z.string().min(2).max(1000),
@@ -50,6 +55,8 @@ const CreateNoteModal = () => {
       });
 
       toast.success("Not başarıyla oluşturuldu.");
+
+      dispatch(getAllNotes());
       form.reset();
     } catch (error: unknown) {
       if (error instanceof Error) {
