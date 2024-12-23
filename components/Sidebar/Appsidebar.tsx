@@ -3,7 +3,6 @@ import {
   Home,
   Inbox,
   LoaderIcon,
-  LoaderPinwheel,
   MessageCircle,
   Text,
   User,
