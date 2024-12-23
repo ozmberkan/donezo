@@ -9,7 +9,6 @@ import {
 import {
   Sidebar,
   SidebarContent,
-  SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
@@ -20,15 +19,9 @@ import {
   SidebarSeparator,
 } from "@/components/ui/sidebar";
 import Link from "next/link";
-import { Button } from "../ui/button";
-import { signOut } from "firebase/auth";
-import { auth, db } from "@/firebase/firebase";
-import { useEffect, useState } from "react";
-import { collection, getDocs } from "firebase/firestore";
+import { useEffect } from "react";
 import CreateNoteModal from "../Modals/CreateNoteModal";
 import { toast } from "sonner";
-import { SignedIn, UserButton, UserProfile } from "@clerk/nextjs";
-import { User } from "@clerk/nextjs/server";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/redux/store";
 import { getAllNotes } from "@/redux/slices/noteSlice";
